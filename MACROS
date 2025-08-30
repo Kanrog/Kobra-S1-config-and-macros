@@ -1,0 +1,90 @@
+S1 Macros
+
+[gcode_macro PREHEAT30]
+## Preheats the chamber for 30 minutes using the bed and the AUX fan. Disables itself after 30 minutes.
+gcode:
+  G90
+  G28
+  G0 X125 Y125 Z10 F3600
+  SET_HEATER_TEMPERATURE HEATER=heater_bed TARGET=110
+  SET_FAN_SPEED FAN=box_fan SPEED=1
+  G4 S1800
+  SET_HEATER_TEMPERATURE HEATER=heater_bed TARGET=0
+  SET_FAN_SPEED FAN=box_fan SPEED=0
+  M84
+  
+[gcode_macro COOLDOWN30]
+## Turns on the chamber exhaust fan for 30 minutes. Disables itself after 30 minutes.
+gcode:
+  TURN_OFF_HEATERS
+  SET_FAN_SPEED FAN=air_filter_fan SPEED=1
+  G4 S1800
+  SET_FAN_SPEED FAN=air_filter_fan SPEED=0
+
+[gcode_macro ZPLUS]
+## Adjust Z offset while printing. This INCREASES the Z offset.
+gcode:
+   SET_GCODE_OFFSET Z_ADJUST=+0.05
+
+[gcode_macro ZMINUS]
+## Adjust Z offset while printing. This DECREASES the Z offset.
+gcode:
+   SET_GCODE_OFFSET Z_ADJUST=-0.05
+
+[gcode_macro CLEAN_NOZZLE]
+description: Test all axis movements at max speeds set in mainsail
+## Heats the nozzle to 150 then goes trough a nozzle wipe cycle.
+gcode:
+  SET_HEATER_TEMPERATURE HEATER=extruder TARGET=150
+  G28
+  G4 S5
+  G90
+  G1 F36000
+  G1 Y250
+  G1 F8000
+  G1 X81
+  G1 Y273
+  G4 S2
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G1 F8000
+  G1 X96
+  G1 X81
+  G4 S2
+  G1 F8000
+  G1 X83
+  G1 Y250
+  G1 F12000
+  G1 Y250
+  G1 X47 
+  G1 F12000
+  G1 Y276
+  ## The rest of this macro turns off the motors and heaters, remove if you dont want that to happen.
+  SET_HEATER_TEMPERATURE HEATER=extruder TARGET=0
+  M84
+
