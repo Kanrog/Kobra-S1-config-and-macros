@@ -1,0 +1,9 @@
+[tmc2209 extruder]
+run_current: 1.0
+
+[bed_mesh]
+speed: 400
+probe_count: 7,7
+algorithm: bicubic
+mesh_min:15,15
+mesh_max:235,235
