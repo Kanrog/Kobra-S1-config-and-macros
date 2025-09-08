@@ -32,7 +32,6 @@ gcode:
    SET_GCODE_OFFSET Z_ADJUST=-0.05
 
 [gcode_macro CLEAN_NOZZLE]
-description: Test all axis movements at max speeds set in mainsail
 ## Heats the nozzle to 150 then goes trough a nozzle wipe cycle.
 gcode:
   SET_HEATER_TEMPERATURE HEATER=extruder TARGET=150
