@@ -1,5 +1,5 @@
 [tmc2209 extruder]
-run_current: 1.0
+run_current: 0.8
 
 [bed_mesh]
 speed: 400
